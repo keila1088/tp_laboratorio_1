@@ -12,10 +12,12 @@
 #include <math.h>
 
 int MainMenu();
-int MenuFlights();
+int MenuFlights(float, float);
 float EnterPrice(int);
 float DebitPayment(float);
 float CreditPayment(float);
 float BtcPayment(float);
+float CalcPriceXkm(float, float);
+void ShouldResults(float, float, float, float, float, float, float, float, float, float, float, float);
 
 #endif /* FUNCTIONS_H_ */

@@ -15,15 +15,17 @@ int main(){
 		optFlights,
 		optPayment,
 		flag=0;
-	float km=0,
-		aaPrice,
-		latamPrice,
+	float km=7090,
+		aaPrice=162965,
+		latamPrice=159339,
 		priceDebitLatam,
 		priceDebitAA,
 		priceCreditLatam,
 		priceCreditAA,
 		priceBtcLatam,
 		priceBtcAA,
+		unitPriceLatam,
+		unitPriceAA,
 		difference;
 	char op;
 	do{
@@ -35,7 +37,7 @@ int main(){
 				system("pause");
 			break;
 			case 2:
-				optFlights= MenuFlights();
+				optFlights= MenuFlights(aaPrice, latamPrice);
 				if(optFlights==1){
 					aaPrice=EnterPrice(optFlights);
 					flag=1;
@@ -58,16 +60,32 @@ int main(){
 				priceCreditAA=CreditPayment(aaPrice);
 				priceBtcLatam=BtcPayment(latamPrice);
 				priceBtcAA=BtcPayment(aaPrice);
-				printf("el precio con debito de latam es $%.2f y el de aerolineas argentinas es $%.2f \n", priceDebitLatam, priceDebitAA);
-				printf("el precio con credito de latam es $%.2f y el de aerolineas argentinas es $%.2f \n", priceCreditLatam, priceCreditAA);
-				printf("el precio con bitcoins de latam es $%.5f y el de aerolineas argentinas es $%.5f \n", priceBtcLatam, priceBtcAA);
+				unitPriceLatam=CalcPriceXkm(latamPrice, km);
+				unitPriceAA=CalcPriceXkm(aaPrice, km);
+				if(latamPrice>aaPrice){
+					difference=latamPrice-aaPrice;
+				}else{
+					difference=aaPrice-latamPrice;
+				}
+				printf("CALCULOS REALIZADOS \n");
 				system("pause");
 			break;
 			case 4:
-
+				ShouldResults(latamPrice, aaPrice, priceDebitLatam, priceDebitAA, priceCreditLatam, priceCreditAA, priceBtcLatam, priceBtcAA, unitPriceLatam, unitPriceAA, difference, km);
+				system("pause");
 			break;
 			case 5:
-
+				priceDebitLatam=DebitPayment(159339);
+				priceDebitAA=DebitPayment(162965);
+				priceCreditLatam=CreditPayment(159339);
+				priceCreditAA=CreditPayment(162965);
+				priceBtcLatam=BtcPayment(159339);
+				priceBtcAA=BtcPayment(162965);
+				unitPriceLatam=CalcPriceXkm(159339, 7090);
+				unitPriceAA=CalcPriceXkm(162965, 7090);
+				difference=162965-159339;
+				ShouldResults(159339, 162965, priceDebitLatam, priceDebitAA, priceCreditLatam, priceCreditAA, priceBtcLatam, priceBtcAA, unitPriceLatam, unitPriceAA, difference, 7090);
+				system("pause");
 			break;
 		}
 	  }while(option!=6);
@@ -75,3 +93,5 @@ int main(){
 	printf("gracias!");
 	return 0;
 }
+
+
