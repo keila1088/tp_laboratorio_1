@@ -5,7 +5,8 @@
  *      Author: Keila Ceñal
  */
 
-#include "functions.h"
+#include "menuAndValidation.h"
+#include "operations.h"
 
 
 
