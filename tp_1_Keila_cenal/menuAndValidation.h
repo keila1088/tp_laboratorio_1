@@ -14,5 +14,6 @@
 int MainMenu();
 int MenuFlights(float, float);
 void ShouldResults(float, float, float, float, float, float, float, float, float, float, float, float);
+float EnterAndValidate();
 
 #endif /* FUNCTIONS_H_ */

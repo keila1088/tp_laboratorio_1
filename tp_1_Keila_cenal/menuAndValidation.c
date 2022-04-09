@@ -53,3 +53,18 @@ void ShouldResults(float latamPrice, float aaPrice, float priceDebitLatam, float
 	printf("La diferencia de precio es: $%.2f \n", difference);
 	printf("\n");
 }
+
+float EnterAndValidate(){
+	float km;
+	int aux;
+	printf("ingrese los kilometros del vuelo: \n");
+	aux= scanf("%f", &km);
+	while(km<=0 || aux==0){
+		fflush(stdin);
+		printf("ERROR! ingresar nuevamente los kilometros: \n");
+		scanf("%f", &km);
+		printf("km adentro del while: %f", km);
+		aux=km;
+	}
+	return km;
+}

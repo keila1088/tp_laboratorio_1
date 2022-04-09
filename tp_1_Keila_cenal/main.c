@@ -14,7 +14,8 @@ int main(){
 	setbuf(stdout, NULL);
 	int option,
 		optFlights,
-		optPayment,
+		flagKm=0,
+		flagPrice=0,
 		flag=0;
 	float km=7090,
 		aaPrice=162965,
@@ -28,14 +29,13 @@ int main(){
 		unitPriceLatam,
 		unitPriceAA,
 		difference;
-	char op;
+	char exit;
 	do{
 		option= MainMenu();
 		switch(option){
 			case 1:
-				printf("ingrese la cantidad de kilometros: ");
-				scanf("%f", &km);
-				system("pause");
+				km=EnterAndValidate();
+				flagKm=1;
 			break;
 			case 2:
 				optFlights= MenuFlights(aaPrice, latamPrice);
@@ -51,29 +51,31 @@ int main(){
 				}else{
 					aaPrice=EnterPrice(1);
 				}
-
-				system("pause");
+				flagPrice=1;
 			break;
 			case 3:
-				priceDebitLatam=DebitPayment(latamPrice);
-				priceDebitAA=DebitPayment(aaPrice);
-				priceCreditLatam=CreditPayment(latamPrice);
-				priceCreditAA=CreditPayment(aaPrice);
-				priceBtcLatam=BtcPayment(latamPrice);
-				priceBtcAA=BtcPayment(aaPrice);
-				unitPriceLatam=CalcPriceXkm(latamPrice, km);
-				unitPriceAA=CalcPriceXkm(aaPrice, km);
-				if(latamPrice>aaPrice){
+				if(flagKm==1 && flagPrice==1){
+					priceDebitLatam=DebitPayment(latamPrice);
+					priceDebitAA=DebitPayment(aaPrice);
+					priceCreditLatam=CreditPayment(latamPrice);
+					priceCreditAA=CreditPayment(aaPrice);
+					priceBtcLatam=BtcPayment(latamPrice);
+					priceBtcAA=BtcPayment(aaPrice);
+					unitPriceLatam=CalcPriceXkm(latamPrice, km);
+					unitPriceAA=CalcPriceXkm(aaPrice, km);
 					difference=latamPrice-aaPrice;
+					printf("CALCULOS REALIZADOS \n");
+				}else if(flagKm==1 && flagPrice==0){
+					printf("Error. para realizar los calculos debe ingresar tambien el precio de los vuelos. \n");
+				}else if(flagKm==00 && flagPrice==1){
+					printf("Error. para realizar los calculos debe ingresar tambien los Km \n");
 				}else{
-					difference=aaPrice-latamPrice;
+					printf("Error. para realizar los calculos debe ingresar los km y precios de vuelos o pulsar 5: carga forzada de datos.\n");
 				}
-				printf("CALCULOS REALIZADOS \n");
-				system("pause");
+
 			break;
 			case 4:
 				ShouldResults(latamPrice, aaPrice, priceDebitLatam, priceDebitAA, priceCreditLatam, priceCreditAA, priceBtcLatam, priceBtcAA, unitPriceLatam, unitPriceAA, difference, km);
-				system("pause");
 			break;
 			case 5:
 				priceDebitLatam=DebitPayment(159339);
@@ -86,10 +88,16 @@ int main(){
 				unitPriceAA=CalcPriceXkm(162965, 7090);
 				difference=162965-159339;
 				ShouldResults(159339, 162965, priceDebitLatam, priceDebitAA, priceCreditLatam, priceCreditAA, priceBtcLatam, priceBtcAA, unitPriceLatam, unitPriceAA, difference, 7090);
-				system("pause");
 			break;
+			case 6:
+				exit='y';
+			break;
+			default:
+				printf("opcion invalida. ingrese un numero de la lista: \n");
 		}
-	  }while(option!=6);
+		fflush(stdin);
+		system("pause");
+	  }while(exit!='y');
 
 	printf("gracias!");
 	return 0;
