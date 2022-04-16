@@ -9,9 +9,9 @@
 
 
 /**
- *
+ * funcion para mostrar menu principal
  * @param km
- * @return
+ * @return option
  */
 int MainMenu(float km){
 	int option;
@@ -29,10 +29,10 @@ int MainMenu(float km){
 }
 
 /**
- *
+ * submenu con opciones para ingreso de precio por aerolinea.
  * @param priceAA
  * @param priceLatam
- * @return
+ * @return opt
  */
 int MenuFlights(float priceAA, float priceLatam){
 	int opt;
@@ -46,7 +46,7 @@ int MenuFlights(float priceAA, float priceLatam){
 }
 
 /**
- *
+ * funcion para mostrar en pantalla los calculos realizados.
  * @param latamPrice
  * @param aaPrice
  * @param priceDebitLatam
@@ -82,8 +82,8 @@ void ShouldResults(float latamPrice, float aaPrice, float priceDebitLatam, float
 }
 
 /**
- *
- * @return
+ * funcion que devuelve los kilometros ingresados y valida que sean correctos
+ * @return km
  */
 float EnterAndValidate(){
 	float km;
@@ -100,9 +100,10 @@ float EnterAndValidate(){
 }
 
 /**
- *
+ * funcion para ingresar el precio por aerolinea que devuelve el mismo segun
+ * la opcion que haya traido por parametro
  * @param opAir
- * @return
+ * @return price
  */
 float EnterAndValidatePrice(int opAir){
 	fflush(stdin);

@@ -38,6 +38,7 @@ int main(){
 			case 1:
 				km=EnterAndValidate();
 				flagKm=1;
+				system("pause");
 			break;
 			case 2:
 				optFlights= MenuFlights(aaPrice, latamPrice);
@@ -54,6 +55,7 @@ int main(){
 					aaPrice=EnterAndValidatePrice(1);
 				}
 				flagPrice=1;
+				system("pause");
 			break;
 			case 3:
 				if(flagKm==1 && flagPrice==1){
@@ -74,10 +76,11 @@ int main(){
 				}else{
 					printf("Error. para realizar los calculos debe ingresar los km y precios de vuelos o pulsar 5: carga forzada de datos.\n");
 				}
-
+				system("pause");
 			break;
 			case 4:
 				ShouldResults(latamPrice, aaPrice, priceDebitLatam, priceDebitAA, priceCreditLatam, priceCreditAA, priceBtcLatam, priceBtcAA, unitPriceLatam, unitPriceAA, difference, km);
+				system("pause");
 			break;
 			case 5:
 				priceDebitLatam=DebitPayment(159339);
@@ -90,7 +93,8 @@ int main(){
 				unitPriceAA=CalcPriceXkm(162965, 7090);
 				difference=162965-159339;
 				ShouldResults(159339, 162965, priceDebitLatam, priceDebitAA, priceCreditLatam, priceCreditAA, priceBtcLatam, priceBtcAA, unitPriceLatam, unitPriceAA, difference, 7090);
-			break;
+				system("pause");
+				break;
 			case 6:
 				exit='y';
 			break;
@@ -98,7 +102,6 @@ int main(){
 				printf("opcion invalida. ingrese un numero de la lista: \n");
 		}
 		fflush(stdin);
-		system("pause");
 	  }while(exit!='y');
 
 	printf("gracias!");

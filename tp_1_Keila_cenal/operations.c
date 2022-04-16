@@ -9,7 +9,8 @@
 
 
 /**
- *
+ * funcion que calcula el precio neto de un vuelo con un descuento sobre
+ * el precio bruto por medio de pago
  * @param price
  * @return
  */
@@ -20,7 +21,8 @@ float DebitPayment(float price){
 }
 
 /**
- *
+ * funcion que calcula el precio neto de un vuelo con un interes sobre
+ * el precio bruto por medio de pago
  * @param price
  * @return
  */
@@ -31,7 +33,7 @@ float CreditPayment(float price){
 }
 
 /**
- *
+ * funcion que calcula el precio neto de un vuelo para abonar con bitcoins
  * @param price
  * @return
  */
@@ -42,7 +44,8 @@ float BtcPayment(float price){
 }
 
 /**
- *
+ * funcion que recibe como parametro un precio bruto y kilometros especificos y
+ * devuelve el valor del precio unitario por kilometro
  * @param price
  * @param km
  * @return
