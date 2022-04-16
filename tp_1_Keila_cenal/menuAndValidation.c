@@ -7,10 +7,16 @@
 
 #include "menuAndValidation.h"
 
-int MainMenu(){
+
+/**
+ *
+ * @param km
+ * @return
+ */
+int MainMenu(float km){
 	int option;
 
-	printf("1- Ingresar kilometros \n");
+	printf("1- Ingresar kilometros km=%.2f \n", km);
 	printf("2- ingresar precio de vuelos \n");
 	printf("3- Calcular todos los costos \n");
 	printf("4- Informar Resultados \n");
@@ -22,6 +28,12 @@ int MainMenu(){
 	return option;
 }
 
+/**
+ *
+ * @param priceAA
+ * @param priceLatam
+ * @return
+ */
 int MenuFlights(float priceAA, float priceLatam){
 	int opt;
 	printf("Ingresar precio de vuelos: Aerolineas Argentinas: $%.2f // Latam: $%.2f \n", priceAA, priceLatam);
@@ -33,6 +45,21 @@ int MenuFlights(float priceAA, float priceLatam){
 	return opt;
 }
 
+/**
+ *
+ * @param latamPrice
+ * @param aaPrice
+ * @param priceDebitLatam
+ * @param priceDebitAA
+ * @param priceCreditLatam
+ * @param priceCreditAA
+ * @param priceBtcLatam
+ * @param priceBtcAA
+ * @param unitPriceLatam
+ * @param unitPriceAA
+ * @param difference
+ * @param kms
+ */
 void ShouldResults(float latamPrice, float aaPrice, float priceDebitLatam, float priceDebitAA, float priceCreditLatam,
 					float priceCreditAA, float priceBtcLatam, float priceBtcAA,
 					float unitPriceLatam, float unitPriceAA, float difference, float kms){
@@ -54,6 +81,10 @@ void ShouldResults(float latamPrice, float aaPrice, float priceDebitLatam, float
 	printf("\n");
 }
 
+/**
+ *
+ * @return
+ */
 float EnterAndValidate(){
 	float km;
 	int aux;
@@ -63,8 +94,32 @@ float EnterAndValidate(){
 		fflush(stdin);
 		printf("ERROR! ingresar nuevamente los kilometros: \n");
 		scanf("%f", &km);
-		printf("km adentro del while: %f", km);
 		aux=km;
 	}
 	return km;
+}
+
+/**
+ *
+ * @param opAir
+ * @return
+ */
+float EnterAndValidatePrice(int opAir){
+	fflush(stdin);
+	float price=0;
+		if(opAir==1){
+			printf("ingresar el precio para Aerolineas Argentinas: ");
+			scanf("%f", &price);
+		}else{
+			printf("ingresar el precio para Latam: ");
+			scanf("%f", &price);
+		}
+		while(price <1){
+			fflush(stdin);
+			printf("ERROR EN EL PRECIO. Reingrese: ");
+			scanf("%f", &price);
+		}
+
+
+	return price;
 }

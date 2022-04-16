@@ -11,9 +11,10 @@
 #include <stdlib.h>
 #include <math.h>
 
-int MainMenu();
+int MainMenu(float);
 int MenuFlights(float, float);
 void ShouldResults(float, float, float, float, float, float, float, float, float, float, float, float);
 float EnterAndValidate();
+float EnterAndValidatePrice(int);
 
 #endif /* FUNCTIONS_H_ */

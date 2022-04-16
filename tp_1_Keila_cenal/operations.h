@@ -9,8 +9,6 @@
 #define OPERATIONS_H_
 #include "menuAndValidation.h"
 
-
-float EnterPrice(int);
 float DebitPayment(float);
 float CreditPayment(float);
 float BtcPayment(float);

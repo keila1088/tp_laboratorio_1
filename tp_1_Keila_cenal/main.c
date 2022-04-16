@@ -8,8 +8,10 @@
 #include "menuAndValidation.h"
 #include "operations.h"
 
-
-
+/**
+ *
+ * @return
+ */
 int main(){
 	setbuf(stdout, NULL);
 	int option,
@@ -17,9 +19,9 @@ int main(){
 		flagKm=0,
 		flagPrice=0,
 		flag=0;
-	float km=7090,
-		aaPrice=162965,
-		latamPrice=159339,
+	float km=0,
+		aaPrice=0,
+		latamPrice=0,
 		priceDebitLatam,
 		priceDebitAA,
 		priceCreditLatam,
@@ -31,7 +33,7 @@ int main(){
 		difference;
 	char exit;
 	do{
-		option= MainMenu();
+		option= MainMenu(km);
 		switch(option){
 			case 1:
 				km=EnterAndValidate();
@@ -40,16 +42,16 @@ int main(){
 			case 2:
 				optFlights= MenuFlights(aaPrice, latamPrice);
 				if(optFlights==1){
-					aaPrice=EnterPrice(optFlights);
+					aaPrice=EnterAndValidatePrice(optFlights);
 					flag=1;
 				}else{
-					latamPrice=EnterPrice(optFlights);
+					latamPrice=EnterAndValidatePrice(optFlights);
 					flag=2;
 				}
 				if(flag==1){
-					latamPrice=EnterPrice(2);
+					latamPrice=EnterAndValidatePrice(2);
 				}else{
-					aaPrice=EnterPrice(1);
+					aaPrice=EnterAndValidatePrice(1);
 				}
 				flagPrice=1;
 			break;
@@ -67,7 +69,7 @@ int main(){
 					printf("CALCULOS REALIZADOS \n");
 				}else if(flagKm==1 && flagPrice==0){
 					printf("Error. para realizar los calculos debe ingresar tambien el precio de los vuelos. \n");
-				}else if(flagKm==00 && flagPrice==1){
+				}else if(flagKm==0 && flagPrice==1){
 					printf("Error. para realizar los calculos debe ingresar tambien los Km \n");
 				}else{
 					printf("Error. para realizar los calculos debe ingresar los km y precios de vuelos o pulsar 5: carga forzada de datos.\n");
